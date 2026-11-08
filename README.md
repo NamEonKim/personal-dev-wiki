@@ -1,21 +1,23 @@
-# A Personal Development Knowledge Base
+# Personal Dev Wiki
 
-A thoughtfully curated wiki for building, shipping, and operating software—with practical guidance on development workflows, AI-assisted collaboration, and DevOps.
+A personal developer wiki for practical notes on building, shipping, and operating software. The guides below cover development workflows, AI-assisted collaboration, and DevOps troubleshooting, with English and Korean editions where available.
 
-## Development Workflow
+## Guides
+
+### Git & Development Workflow
 
 [Git Branch Workflow Guide](Git_Branch_Guide.md) — cloning, branch setup, commits, reviews, and safe refactoring.
 
-## AI-Assisted Development
+### AI-Assisted Development
 
-Explore the multi-agent development guide:
+Learn about planning and collaborating with multiple AI agents:
 
-- [English](Multi_Agent_Development_Guide.md)
-- [한국어](Multi_Agent_Development_Guide.ko.md)
+- [Multi-Agent Development Guide — English](Multi_Agent_Development_Guide.md)
+- [Multi-Agent Development Guide — 한국어](Multi_Agent_Development_Guide.ko.md)
 
-## DevOps & Troubleshooting
+### DevOps & Troubleshooting
 
 Find platform-specific log locations and read-only inspection commands for Linux, Unix, Windows, SSH, Docker, and Kubernetes:
 
-- [English](DevOps_Log_Commands.md)
-- [한국어](DevOps_Log_Commands.ko.md)
+- [DevOps Log Commands — English](DevOps_Log_Commands.md)
+- [DevOps Log Commands — 한국어](DevOps_Log_Commands.ko.md)
