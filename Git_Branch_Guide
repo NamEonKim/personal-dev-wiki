@@ -225,3 +225,39 @@ git diff origin/main...HEAD
 ```
 
 PR/MR interfaces, required checks, review rules, and merge methods vary by repository. This guide describes general Git behavior and does not replace your organization's policies.
+
+## 9. Set up GitHub MCP in Copilot
+
+GitHub MCP lets Copilot use supported GitHub tools in an MCP-enabled client. Setup depends on the Copilot product, client, and organization policy; a repository can also provide MCP configuration that applies to that repository. Do not copy configuration examples from another client or invent a server URL, command, package name, or credential field: use the setup instructions for the exact client and server you intend to use.
+
+1. Check whether GitHub MCP is already available in your Copilot client. If the repository or organization supplies an MCP server configuration, review its documented source and scope before enabling it.
+2. If you need a personal server, open your Copilot client's MCP or installed-server settings, find the GitHub MCP server or add it using the client-specific official setup instructions, and select the GitHub account or host you intend to use.
+3. Complete authentication in the client or its supported sign-in flow. Do not paste access tokens, passwords, or private keys into prompts, source files, commits, or this guide. Grant only the access needed for the requested work.
+4. For repository-defined MCP servers, use the repository or project customization settings documented by that client. Inspect repository configuration changes before trusting or enabling a server, especially when they originate from an unfamiliar branch.
+5. Confirm the server reports a successful connection and that the expected GitHub tools are available. If sign-in, permissions, or organization policy blocks access, use the client's supported settings or ask the repository administrator; do not work around the restriction with an unapproved token.
+
+Global or personal server installation and repository-provided configuration are distinct: the former is generally managed in the user's client settings, while the latter is associated with a repository and may need explicit approval. Names, UI labels, configuration formats, and authentication steps differ by client version and host. Follow the current official instructions for your Copilot client; never commit personal credentials or assume that a repository configuration automatically authenticates you.
+
+## 10. Request and work through a Copilot code review
+
+Use code review as an additional set of eyes, not a substitute for understanding the change, running tests, or following required human review. Review a focused diff on your working branch and give Copilot enough context to assess intended behavior.
+
+1. Make sure the branch is up to date with the intended base and that the diff contains only the work being reviewed. Identify the goal, relevant requirements, affected areas, expected behavior, and important constraints.
+2. Ask Copilot to review the specific PR or diff for actionable bugs, regressions, missing edge cases, and test gaps. State the intended base branch and any behavior that must remain unchanged. Ask for findings with file/line references, impact, and a concise rationale; avoid asking for an unrestricted rewrite when you want a review.
+3. Evaluate each finding against the actual code and requirements. Reproduce the issue or inspect the relevant call paths and tests; distinguish confirmed defects from suggestions, false positives, and intentional trade-offs. Do not apply a suggestion solely because it came from a review.
+4. For accepted findings, make a focused fix on the working branch, add or update tests where appropriate, inspect the resulting diff, and run the project's relevant checks. For declined or deferred findings, record the reason in the PR discussion or review notes when useful.
+5. Re-run review or targeted checks after substantial changes, then use the repository's normal PR/MR approval process. Do not treat Copilot review as an approval that satisfies required human reviewers or branch protection.
+
+Keep the review scope bounded: a smaller, clearly described change is easier to validate than a broad mixed-purpose diff. If the branch changes while review is in progress, refresh the diff and confirm the findings still apply before acting.
+
+## 11. Refactor safely
+
+Refactoring changes code structure without intentionally changing externally observable behavior. Keep the work on a dedicated branch and make the result easy to compare and revert:
+
+1. Define the behavior that must remain unchanged, the refactoring boundary, and any explicit non-goals. Check for existing tests, callers, and documented contracts; clarify ambiguous behavior before changing it.
+2. Establish a baseline: inspect the working tree and relevant diff, run the focused tests and checks before editing, and record any existing failures so they are not mistaken for regressions.
+3. Make one small, coherent structural change at a time. Preserve interfaces and behavior unless the task explicitly authorizes a behavior change. Avoid mixing formatting, dependency upgrades, and unrelated cleanup into the same refactor.
+4. After each step, inspect the diff and run the most relevant tests. Once the refactor is complete, run the required broader tests, linters, type checks, or build. If a check fails, determine whether the refactor caused it rather than silently accepting or masking the failure.
+5. Compare the final diff with the base, check for accidental files or behavior changes, and request a focused Copilot or human review using the guidance above. Commit the verified refactor with a clear message; push the working branch and use the normal PR/MR process.
+
+If the change alters behavior, document that explicitly and add tests for the new behavior rather than presenting it as a behavior-preserving refactor. Keep rollback straightforward: small commits and a clean, reviewed diff are easier to revert than a large mixed-purpose change.
