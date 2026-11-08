@@ -1,20 +1,21 @@
-# PublicMemo
-PublicMemo
+# A Personal Development Knowledge Base
 
-## Git Workflow
+A thoughtfully curated wiki for building, shipping, and operating software—with practical guidance on development workflows, AI-assisted collaboration, and DevOps.
 
-See the [Git Branch Workflow Guide](Git_Branch_Guide.md) for cloning, branch setup, commits, reviews, and safe refactoring.
+## Development Workflow
 
-## DevOps Log Inspection
-
-Use the [DevOps Log Commands Guide](DevOps_Log_Commands.md) for Linux, Unix, Windows, SSH, Docker, and Kubernetes log locations and read-only inspection commands.
-
-- [English](DevOps_Log_Commands.md)
-- [한국어](DevOps_Log_Commands.ko.md)
+[Git Branch Workflow Guide](Git_Branch_Guide.md) — cloning, branch setup, commits, reviews, and safe refactoring.
 
 ## AI-Assisted Development
 
-Read the multi-agent development guide in your preferred language:
+Explore the multi-agent development guide:
 
 - [English](Multi_Agent_Development_Guide.md)
 - [한국어](Multi_Agent_Development_Guide.ko.md)
+
+## DevOps & Troubleshooting
+
+Find platform-specific log locations and read-only inspection commands for Linux, Unix, Windows, SSH, Docker, and Kubernetes:
+
+- [English](DevOps_Log_Commands.md)
+- [한국어](DevOps_Log_Commands.ko.md)
