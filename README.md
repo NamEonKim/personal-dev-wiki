@@ -1,6 +1,6 @@
 # Personal Dev Wiki
 
-A personal developer wiki for practical notes on building, shipping, and operating software. The guides below cover development workflows, AI-assisted collaboration, and DevOps troubleshooting, with English and Korean editions where available.
+A personal developer wiki for practical notes on building, shipping, and operating software. The guides below cover development workflows, senior frontend and backend interview preparation, AI-assisted collaboration, and DevOps troubleshooting, with English and Korean editions where available.
 
 ## Guides
 
@@ -8,10 +8,17 @@ A personal developer wiki for practical notes on building, shipping, and operati
 
 [Git Branch Workflow Guide](Git_Branch_Guide.md) — cloning, branch setup, commits, reviews, and safe refactoring.
 
+### Frontend & App Senior Interviews
+
+- [Angular Senior Frontend Interview Guide](interview-guides/frontend/Angular_Senior_Frontend_Interview_Guide.md)
+- [Flutter Senior App Engineer Interview Guide](interview-guides/frontend/Flutter_Senior_App_Engineer_Interview_Guide.md)
+- [React Senior Frontend Interview Guide](interview-guides/frontend/React_Senior_Frontend_Interview_Guide.md)
+- [Vue Senior Frontend Interview Guide](interview-guides/frontend/Vue_Senior_Frontend_Interview_Guide.md)
+
 ### Backend Senior Interviews
 
-- [Go Backend Senior Interview Guide](Go_Backend_Senior_Interview_Guide.md)
-- [Java Backend Senior Interview Guide](Java_Backend_Senior_Interview_Guide.md)
+- [Go Backend Senior Interview Guide](interview-guides/backend/Go_Backend_Senior_Interview_Guide.md)
+- [Java Backend Senior Interview Guide](interview-guides/backend/Java_Backend_Senior_Interview_Guide.md)
 
 ### AI-Assisted Development
 
