@@ -8,6 +8,11 @@ A personal developer wiki for practical notes on building, shipping, and operati
 
 [Git Branch Workflow Guide](Git_Branch_Guide.md) — cloning, branch setup, commits, reviews, and safe refactoring.
 
+### Backend Senior Interviews
+
+- [Go Backend Senior Interview Guide](Go_Backend_Senior_Interview_Guide.md)
+- [Java Backend Senior Interview Guide](Java_Backend_Senior_Interview_Guide.md)
+
 ### AI-Assisted Development
 
 Learn about planning and collaborating with multiple AI agents:
