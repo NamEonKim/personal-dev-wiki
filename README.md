@@ -15,6 +15,13 @@ Learn about planning and collaborating with multiple AI agents:
 - [Multi-Agent Development Guide — English](Multi_Agent_Development_Guide.md)
 - [Multi-Agent Development Guide — 한국어](Multi_Agent_Development_Guide.ko.md)
 
+### Cloud Infrastructure
+
+Compare cloud computing concepts, on-premises environments, and services across AWS, Google Cloud, Azure, and VMware:
+
+- [Cloud Concepts Comparison Guide — English](Cloud_Concepts_Comparison_Guide.md)
+- [Cloud Concepts Comparison Guide — 한국어](Cloud_Concepts_Comparison_Guide.ko.md)
+
 ### DevOps & Troubleshooting
 
 Find platform-specific log locations and read-only inspection commands for Linux, Unix, Windows, SSH, Docker, and Kubernetes:
