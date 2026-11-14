@@ -27,6 +27,13 @@ Learn about planning and collaborating with multiple AI agents:
 - [Multi-Agent Development Guide — English](Multi_Agent_Development_Guide.md)
 - [Multi-Agent Development Guide — 한국어](Multi_Agent_Development_Guide.ko.md)
 
+### Databricks MCP
+
+Set up Databricks Unity Gateway to connect Codex with the `system.ai.github` MCP server on Windows PowerShell:
+
+- [Unity Gateway, Codex, and GitHub MCP Setup — English](databricks-mcp/Unity_Gateway_Codex_GitHub_MCP_Setup.md)
+- [Unity Gateway, Codex, and GitHub MCP Setup — 한국어](databricks-mcp/Unity_Gateway_Codex_GitHub_MCP_Setup.ko.md)
+
 ### Cloud Infrastructure
 
 Compare cloud computing concepts, on-premises environments, and services across AWS, Google Cloud, Azure, and VMware:
