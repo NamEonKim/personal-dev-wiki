@@ -172,7 +172,49 @@ For AWS, representative services include EC2, EBS, S3, VPC, and IAM. For Google 
 
 **A useful comparison method:** Instead of forcing a one-to-one mapping between product names, ask: “What capability does this service provide?”, “Which layers do I manage?”, and “Who owns failure, security, and billing responsibilities?”
 
-## 8. Summary
+## 8. Snowflake and Databricks vs. the Major Cloud Providers
+
+### Start with the category distinction
+
+Snowflake and Databricks are data platforms delivered as managed services. They are not general-purpose public cloud providers and are not direct substitutes for AWS, Microsoft Azure, Google Cloud, or Oracle Cloud Infrastructure (OCI). The hyperscalers provide broad infrastructure and platform portfolios—compute, networking, storage, identity, databases, analytics, AI, and more. Snowflake and Databricks focus on data workloads and run on supported hyperscaler infrastructure.
+
+Compare products by the capability and operating responsibility they provide, not by matching brand names. A customer may use Snowflake or Databricks together with cloud-native storage, networking, identity, and analytics services.
+
+### Platform and operating-model comparison
+
+| Area | Snowflake | Databricks | Hyperscaler products |
+|---|---|---|---|
+| Core model | Managed data platform with a shared data layer, independently sized virtual warehouses, and a cloud services layer | Lakehouse platform built around Apache Spark, Delta Lake and Unity Catalog, with SQL, data engineering, streaming, data science, and AI workloads | Broad cloud portfolios with infrastructure services and multiple data/analytics services that customers assemble |
+| Storage and compute | Snowflake manages data storage; virtual warehouses are separate compute resources that can scale independently. Customers do not manage the underlying storage buckets or database servers for standard Snowflake tables. | Compute runs separately from cloud object storage. Lakehouse data commonly uses open table formats such as Delta Lake and Apache Iceberg; managed and external assets have different storage-lifecycle ownership. | Varies by service: for example, BigQuery separates managed storage and compute; Redshift, object storage, serverless analytics, and cluster-based services have different models. |
+| Typical workloads | SQL analytics, data warehousing, data sharing, data applications, and governed access to structured, semi-structured, and some unstructured data | Batch and streaming data engineering, lakehouse SQL/BI, machine learning, AI, and workloads that benefit from Spark and open data | A broad range, from object storage and managed warehouses to stream processing, data integration, ML, and general-purpose compute |
+| Managed-service boundary | Snowflake manages the platform, upgrades, and underlying infrastructure. Snowflake accounts are hosted on supported public-cloud regions; Snowflake is not installed by customers in their own private cloud. | Databricks manages the service control plane. Data-plane placement and infrastructure responsibility vary by cloud and compute type; serverless and customer-configured compute do not have identical boundaries. | The provider operates the cloud infrastructure. Customers select among services with differing responsibility boundaries, configuration choices, and managed levels. |
+| Ecosystem and portability | SQL-centric ecosystem, connectors, built-in sharing, and support for selected open formats; Snowflake-managed tables use Snowflake’s optimized storage representation | Spark and open-source ecosystem, cloud object storage, Delta Lake, Apache Iceberg, notebooks, ML and data-engineering tools; portability depends on formats, features, and cloud-specific integrations | Deep provider-native integration with that provider’s IAM, network, storage, and operational services; architectures can become provider-specific |
+| Governance and security | Snowflake roles and grants, object-level privileges, OAuth, and Horizon Catalog capabilities; underlying cloud IAM is not a replacement for Snowflake grants | Unity Catalog provides a unified governance layer for supported data and AI assets, with privileges, lineage, and auditing; cloud IAM and storage configuration remain relevant | Cloud IAM and service-specific controls govern provider resources; data-level permissions and governance features vary by product |
+| Deployment and vendor relationship | Snowflake operates the service on supported AWS, Azure, and Google Cloud infrastructure. Customers consume Snowflake through a Snowflake account and service interfaces, not as the cloud provider’s full portfolio. | Databricks is available on supported cloud platforms, with service and data-plane behavior varying by cloud, region, and compute mode. It is not a replacement for the underlying cloud account and services. | AWS, Azure, Google Cloud, and OCI each operate their own cloud and native services. A service running on a provider does not become an equivalent to that provider. |
+| Cost considerations | Consider compute credits, warehouse sizing and idle time, storage, data transfer, edition/features, and commitments. Separate warehouses can help isolate workload consumption but do not make spend automatic or predictable. | Consider Databricks usage charges (such as DBUs), cloud compute and storage charges where applicable, serverless rates, network/data transfer, and commitments. The exact bill depends on deployment and compute mode. | Service-specific compute, storage, requests, network transfer, support, and reservation/commitment charges. Compare a working architecture and usage profile rather than list prices alone. |
+| Main trade-off | Convenient managed SQL/data experience and workload isolation, with platform-specific features, service pricing, and less control over underlying infrastructure | Flexible lakehouse and engineering/AI workflows with open formats, with more architectural choices to govern and costs that can span the platform and cloud account | Broad choice and close infrastructure integration, at the cost of selecting, integrating, and operating the right collection of services |
+
+### Examples of cloud-native products—not one-to-one equivalents
+
+| Cloud provider | Representative data and analytics services | How to interpret the comparison |
+|---|---|---|
+| AWS | Amazon S3, AWS Glue, Amazon Athena, Amazon Redshift, Amazon EMR, and Amazon SageMaker | These services cover different layers. Redshift is a managed data warehouse; S3 is object storage; Glue, Athena, EMR, and SageMaker have distinct integration and operating models. |
+| Microsoft Azure | OneLake and Microsoft Fabric experiences, Azure Databricks, Azure Data Lake Storage, Azure Synapse components, and Azure Machine Learning | Fabric is an integrated analytics platform; Azure Databricks is the Databricks service on Azure. Neither should be treated as a synonym for all of Azure. Product capabilities and boundaries evolve. |
+| Google Cloud | BigQuery, Cloud Storage, Dataflow, Dataproc, and Vertex AI | BigQuery is a managed analytics platform with separated storage and compute; the other services provide separate storage, processing, and AI capabilities. |
+| OCI | Object Storage, Autonomous AI Database, Oracle Database services, OCI Data Flow, and OCI Data Science | OCI offers managed Oracle database and data-processing choices within a broad cloud portfolio; it is not simply an “OCI version” of Snowflake or Databricks. Verify each product’s current region and service availability. |
+
+For example, BigQuery and Snowflake both offer managed analytics with separated storage and compute, but they differ in architecture, governance, ecosystem, pricing, and cloud relationship. Amazon Redshift is a cloud-native warehouse product, not an AWS-wide platform equivalent. Databricks may run on a hyperscaler and use its object storage, but Databricks remains a data/AI platform rather than the underlying cloud provider.
+
+### Which should you choose?
+
+- **Choose Snowflake** when a managed, SQL-first analytics platform, workload-isolated warehouses, governed data sharing, and low infrastructure administration align with the team’s needs.
+- **Choose Databricks** when a lakehouse approach, Spark-based engineering or streaming, open table formats, and combined analytics/ML/AI workflows are central.
+- **Choose cloud-native services** when the architecture benefits from tight integration with an existing cloud estate, a specific native service, or broader infrastructure control. The provider may offer several complementary products rather than one all-in-one substitute.
+- **Use more than one** when the use cases justify it, but plan for identity, governance, data movement, observability, skills, and cross-platform costs. Avoid copying data between platforms without a clear need.
+
+Before deciding, test representative queries and pipelines, identify where data physically resides, map identity and governance responsibilities, confirm regional/service availability, model idle and peak costs including data transfer, and evaluate exit and interoperability requirements.
+
+## 9. Summary
 
 - Enterprises use cloud for faster provisioning, elastic scaling, managed services, global deployment, and automation.
 - On-premises and cloud differ in physical infrastructure ownership and operations, resource procurement, and control boundaries.
@@ -181,6 +223,7 @@ For AWS, representative services include EC2, EBS, S3, VPC, and IAM. For Google 
 - OCI's VM and bare metal Compute options and managed Oracle database services can fit workloads with those requirements; check service availability, regional limits, and cost for the intended configuration.
 - VMware is a virtualization and private-cloud platform based on vSphere/VCF. Compare it to public cloud by capability layers—VMs, networking, storage, and automation—rather than treating the entire platform as one equivalent service.
 - IAM, VMs, storage, templates, and workflows matter in every environment, but similar names do not imply identical policies, behavior, or pricing.
+- Snowflake and Databricks are managed data platforms, not direct equivalents to AWS, Azure, Google Cloud, or OCI; compare their workloads, control boundaries, governance, and total cost against specific provider-native services.
 
 ## References
 
@@ -188,6 +231,12 @@ For AWS, representative services include EC2, EBS, S3, VPC, and IAM. For Google 
 - [Microsoft Learn — Shared responsibility in the cloud](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility)
 - [Google Cloud — Shared responsibilities and shared fate](https://docs.cloud.google.com/architecture/framework/security/shared-responsibility-shared-fate)
 - [AWS — What is Amazon EC2? / EC2 concepts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
+- [Snowflake — Key concepts and architecture](https://docs.snowflake.com/en/user-guide/intro-key-concepts)
+- [Databricks — What is a data lakehouse?](https://docs.databricks.com/aws/en/lakehouse)
+- [Databricks — What is Unity Catalog?](https://docs.databricks.com/aws/en/data-governance/unity-catalog)
+- [AWS — What is Amazon Redshift?](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html)
+- [Microsoft Learn — What is Microsoft Fabric?](https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview)
+- [Google Cloud — BigQuery overview](https://docs.cloud.google.com/bigquery/docs/introduction)
 - [Google Cloud — Infrastructure Manager overview](https://docs.cloud.google.com/infrastructure-manager/docs/overview)
 - [Google Cloud — Grant a workflow permission to access resources](https://docs.cloud.google.com/workflows/docs/authentication)
 - [Google Cloud — Compute Engine IAM roles and permissions](https://docs.cloud.google.com/compute/docs/access/iam)

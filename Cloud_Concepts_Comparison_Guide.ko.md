@@ -172,7 +172,49 @@ AWS라면 EC2·EBS·S3·VPC·IAM이 대표적이고, Google Cloud라면 Compute 
 
 **좋은 비교 방법:** 상품 이름을 억지로 1:1로 대응하기보다, “이 서비스가 제공하는 기능은 무엇인가?”, “내가 관리하는 계층은 어디까지인가?”, “장애·보안·과금 책임은 누가 갖는가?”를 비교합니다.
 
-## 8. 한눈에 보는 정리
+## 8. Snowflake·Databricks와 주요 클라우드 사업자 비교
+
+### 먼저 제품 범주를 구분하기
+
+Snowflake와 Databricks는 관리형 서비스로 제공되는 데이터 플랫폼입니다. 범용 퍼블릭 클라우드 사업자가 아니며 AWS, Microsoft Azure, Google Cloud, Oracle Cloud Infrastructure(OCI)를 직접 대체하지 않습니다. 하이퍼스케일러는 컴퓨트, 네트워크, 스토리지, ID, 데이터베이스, 분석, AI 등 광범위한 인프라·플랫폼 제품을 제공합니다. Snowflake와 Databricks는 데이터 워크로드에 집중하며 지원되는 하이퍼스케일러 인프라에서 실행됩니다.
+
+브랜드 이름을 억지로 대응시키기보다 각 제품이 제공하는 기능과 운영 책임을 비교하세요. Snowflake 또는 Databricks를 클라우드 네이티브 스토리지, 네트워크, ID 및 분석 서비스와 함께 사용할 수도 있습니다.
+
+### 플랫폼과 운영 모델 비교
+
+| 항목 | Snowflake | Databricks | 하이퍼스케일러 제품 |
+|---|---|---|---|
+| 핵심 모델 | 공유 데이터 계층, 독립적으로 크기를 조정하는 Virtual Warehouse, Cloud Services 계층을 갖춘 관리형 데이터 플랫폼 | Apache Spark, Delta Lake, Unity Catalog를 중심으로 SQL, 데이터 엔지니어링, 스트리밍, 데이터 과학, AI 워크로드를 제공하는 Lakehouse 플랫폼 | 고객이 조합해 사용하는 인프라 서비스 및 여러 데이터·분석 제품으로 구성된 광범위한 클라우드 포트폴리오 |
+| 스토리지와 컴퓨트 | Snowflake가 데이터 저장소를 관리하고 Virtual Warehouse는 별도 컴퓨트로 독립 확장됩니다. 일반 Snowflake 테이블을 사용할 때 고객이 기반 버킷이나 DB 서버를 관리하지 않습니다. | 컴퓨트는 클라우드 객체 스토리지와 분리되어 실행됩니다. Lakehouse 데이터는 Delta Lake, Apache Iceberg 같은 개방형 테이블 형식을 주로 사용합니다. 관리형 자산과 외부 자산은 저장소 수명주기 책임이 다릅니다. | 서비스마다 다릅니다. 예를 들어 BigQuery는 관리형 스토리지와 컴퓨트를 분리하고, Redshift·객체 스토리지·서버리스 분석·클러스터 서비스는 각각 모델이 다릅니다. |
+| 대표 워크로드 | SQL 분석, 데이터 웨어하우스, 데이터 공유, 데이터 애플리케이션, 구조화·반구조화 데이터 및 일부 비정형 데이터의 거버넌스 접근 | 배치·스트리밍 데이터 엔지니어링, Lakehouse SQL/BI, 머신러닝, AI, Spark의 장점을 활용하는 워크로드 | 객체 스토리지와 관리형 웨어하우스부터 스트림 처리, 데이터 통합, ML, 범용 컴퓨트까지 폭넓은 워크로드 |
+| 관리형 서비스 경계 | Snowflake가 플랫폼, 업그레이드, 기반 인프라를 관리합니다. Snowflake 계정은 지원되는 퍼블릭 클라우드 리전에서 호스팅되며 고객이 사설 클라우드에 직접 설치하지 않습니다. | Databricks가 서비스 Control Plane을 관리합니다. 데이터 플레인 위치와 인프라 책임은 클라우드 및 컴퓨트 유형에 따라 다르며 Serverless와 고객 구성형 컴퓨트의 책임 경계도 동일하지 않습니다. | 클라우드 사업자가 인프라를 운영합니다. 고객 책임, 구성 선택지, 관리 수준이 서로 다른 여러 서비스를 선택할 수 있습니다. |
+| 생태계와 이식성 | SQL 중심 생태계, 커넥터, 내장 데이터 공유, 일부 개방형 형식 지원. Snowflake 관리 테이블은 Snowflake 최적화 저장 형식을 사용합니다. | Spark 및 오픈소스 생태계, 클라우드 객체 스토리지, Delta Lake, Apache Iceberg, 노트북, ML·데이터 엔지니어링 도구. 이식성은 사용 형식·기능·클라우드 연동에 따라 달라집니다. | 해당 사업자의 IAM·네트워크·스토리지·운영 서비스와 긴밀히 통합되지만, 아키텍처가 특정 사업자에 종속될 수 있습니다. |
+| 거버넌스와 보안 | Snowflake 역할 및 권한, 객체 권한, OAuth, Horizon Catalog 기능. 기반 클라우드 IAM은 Snowflake 권한을 대체하지 않습니다. | Unity Catalog가 지원되는 데이터·AI 자산을 통합 관리하고 권한, 계보, 감사 기능을 제공합니다. 클라우드 IAM 및 저장소 구성도 여전히 중요합니다. | 클라우드 IAM과 서비스별 제어가 사업자 리소스를 관리합니다. 데이터 수준 권한 및 거버넌스 기능은 제품에 따라 다릅니다. |
+| 배포 및 벤더 관계 | Snowflake가 지원되는 AWS, Azure, Google Cloud 인프라에서 서비스를 운영합니다. 고객은 Snowflake 계정 및 서비스 인터페이스를 사용하며, 기반 사업자의 전체 제품군을 이용하는 것은 아닙니다. | 지원되는 클라우드에서 사용 가능하며 서비스와 데이터 플레인의 동작은 클라우드, 리전, 컴퓨트 방식에 따라 달라집니다. 기반 클라우드 계정과 서비스를 대체하지 않습니다. | AWS, Azure, Google Cloud, OCI가 각자의 클라우드와 네이티브 서비스를 운영합니다. 특정 클라우드에서 실행되는 제품이 그 사업자 전체와 동등해지는 것은 아닙니다. |
+| 비용 고려사항 | 컴퓨트 크레딧, Warehouse 크기와 유휴 시간, 저장소, 데이터 전송, 에디션·기능, 약정 비용을 고려합니다. Warehouse를 분리하면 워크로드별 사용량을 격리할 수 있지만 비용이 자동으로 예측 가능해지는 것은 아닙니다. | Databricks 사용료(예: DBU), 해당되는 경우 클라우드 컴퓨트·스토리지, Serverless 요율, 네트워크·데이터 전송, 약정 비용을 고려합니다. 실제 청구는 배포·컴퓨트 방식에 따라 달라집니다. | 서비스별 컴퓨트, 스토리지, 요청, 네트워크 전송, 지원, 예약·약정 요금이 적용됩니다. 목록 가격만 보지 말고 실제 아키텍처와 사용량을 비교해야 합니다. |
+| 주요 장단점 | 편리한 관리형 SQL/데이터 경험과 워크로드 격리. 플랫폼 고유 기능과 과금 모델이 있고 기반 인프라 제어는 제한적입니다. | 유연한 Lakehouse, 엔지니어링·AI 워크플로, 개방형 형식 지원. 거버넌스할 아키텍처 선택지가 많고 플랫폼과 클라우드에 비용이 분산될 수 있습니다. | 선택의 폭과 기반 인프라 통합성이 높지만, 필요한 제품을 선정·통합·운영해야 합니다. |
+
+### 클라우드 네이티브 제품 예시: 1:1 대응이 아님
+
+| 클라우드 사업자 | 대표 데이터·분석 서비스 | 비교 시 유의점 |
+|---|---|---|
+| AWS | Amazon S3, AWS Glue, Amazon Athena, Amazon Redshift, Amazon EMR, Amazon SageMaker | 각 서비스는 서로 다른 계층을 담당합니다. Redshift는 관리형 데이터 웨어하우스이고 S3는 객체 스토리지입니다. Glue, Athena, EMR, SageMaker의 통합·운영 방식도 각각 다릅니다. |
+| Microsoft Azure | OneLake 및 Microsoft Fabric 경험, Azure Databricks, Azure Data Lake Storage, Azure Synapse 구성 요소, Azure Machine Learning | Fabric은 통합 분석 플랫폼이고 Azure Databricks는 Azure에서 제공되는 Databricks 서비스입니다. 둘 다 Azure 전체와 같은 뜻이 아닙니다. 제품 기능과 경계는 계속 바뀔 수 있습니다. |
+| Google Cloud | BigQuery, Cloud Storage, Dataflow, Dataproc, Vertex AI | BigQuery는 스토리지·컴퓨트를 분리한 관리형 분석 플랫폼입니다. 나머지 서비스는 스토리지·처리·AI 기능을 각각 제공합니다. |
+| OCI | Object Storage, Autonomous AI Database, Oracle Database 서비스, OCI Data Flow, OCI Data Science | OCI는 광범위한 클라우드 제품군 안에서 관리형 Oracle DB 및 데이터 처리 선택지를 제공합니다. OCI 전체가 Snowflake 또는 Databricks의 단순한 “OCI 버전”은 아닙니다. 제품별 현재 리전 및 서비스 제공 여부를 확인하세요. |
+
+예를 들어 BigQuery와 Snowflake는 스토리지와 컴퓨트를 분리한 관리형 분석을 제공하지만 아키텍처, 거버넌스, 생태계, 과금, 클라우드와의 관계가 다릅니다. Amazon Redshift는 AWS 전체 플랫폼과 동등한 제품이 아니라 클라우드 네이티브 웨어하우스입니다. Databricks는 하이퍼스케일러에서 실행되고 해당 객체 스토리지를 사용할 수 있지만, 기반 클라우드 사업자가 아닌 데이터·AI 플랫폼입니다.
+
+### 어떤 제품을 선택할까?
+
+- **Snowflake 선택:** 관리형 SQL 중심 분석, 워크로드별로 격리된 Warehouse, 거버넌스된 데이터 공유, 낮은 인프라 운영 부담이 중요할 때 적합합니다.
+- **Databricks 선택:** Lakehouse 접근, Spark 기반 엔지니어링·스트리밍, 개방형 테이블 형식, 분석·ML·AI 워크플로 통합이 핵심일 때 적합합니다.
+- **클라우드 네이티브 서비스 선택:** 기존 클라우드 환경과의 긴밀한 통합, 특정 네이티브 서비스, 또는 더 넓은 인프라 제어가 중요할 때 적합합니다. 단일 통합 제품이 아니라 여러 보완 제품으로 구성될 수 있습니다.
+- **복수 플랫폼 함께 사용:** 사용 사례가 필요성을 정당화한다면 가능하지만 ID, 거버넌스, 데이터 이동, 관측성, 기술 역량, 플랫폼 간 비용을 계획해야 합니다. 분명한 이유 없이 플랫폼 간 데이터를 복제하지 마세요.
+
+결정 전에 대표 쿼리와 파이프라인을 시험하고, 데이터가 실제로 저장되는 위치, ID·거버넌스 책임, 리전별 제공 여부, 유휴·피크 사용량과 데이터 전송을 포함한 비용, 종료·상호운용성 요구사항을 확인하세요.
+
+## 9. 한눈에 보는 정리
 
 - 기업은 빠른 구축, 탄력적 확장, 관리형 서비스, 글로벌 배포, 자동화를 위해 클라우드를 사용합니다.
 - 온프레미스와 클라우드는 물리 인프라의 소유·운영 주체, 자원 조달 방식, 제어 범위가 다릅니다.
@@ -181,6 +223,7 @@ AWS라면 EC2·EBS·S3·VPC·IAM이 대표적이고, Google Cloud라면 Compute 
 - OCI는 VM·베어메탈 Compute와 관리형 Oracle DB 선택지가 필요한 워크로드에 맞을 수 있습니다. 실제 구성의 비용과 리전별 서비스·shape 한도를 확인해야 합니다.
 - VMware는 vSphere/VCF 기반 가상화·프라이빗 클라우드 플랫폼입니다. 퍼블릭 클라우드와 비교할 때는 플랫폼 전체가 아니라 VM, 네트워크, 스토리지, 자동화 등 각 기능 계층을 기준으로 비교하는 편이 정확합니다.
 - IAM, VM, 스토리지, 템플릿, 워크플로는 모든 환경에서 중요하지만, 용어가 비슷하다는 이유만으로 정책·동작·과금이 같다고 가정하면 안 됩니다.
+- Snowflake와 Databricks는 관리형 데이터 플랫폼이며 AWS·Azure·Google Cloud·OCI와 직접 동등하지 않습니다. 특정 사업자의 네이티브 서비스와 워크로드, 제어 경계, 거버넌스, 총비용을 기준으로 비교하세요.
 
 ## 참고 자료
 
@@ -188,6 +231,12 @@ AWS라면 EC2·EBS·S3·VPC·IAM이 대표적이고, Google Cloud라면 Compute 
 - [Microsoft Learn — Shared responsibility in the cloud](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility)
 - [Google Cloud — Shared responsibilities and shared fate](https://docs.cloud.google.com/architecture/framework/security/shared-responsibility-shared-fate)
 - [AWS — What is Amazon EC2? / EC2 concepts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
+- [Snowflake — Key concepts and architecture](https://docs.snowflake.com/en/user-guide/intro-key-concepts)
+- [Databricks — What is a data lakehouse?](https://docs.databricks.com/aws/en/lakehouse)
+- [Databricks — What is Unity Catalog?](https://docs.databricks.com/aws/en/data-governance/unity-catalog)
+- [AWS — What is Amazon Redshift?](https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html)
+- [Microsoft Learn — What is Microsoft Fabric?](https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview)
+- [Google Cloud — BigQuery overview](https://docs.cloud.google.com/bigquery/docs/introduction)
 - [Google Cloud — Infrastructure Manager overview](https://docs.cloud.google.com/infrastructure-manager/docs/overview)
 - [Google Cloud — Grant a workflow permission to access resources](https://docs.cloud.google.com/workflows/docs/authentication)
 - [Google Cloud — Compute Engine IAM roles and permissions](https://docs.cloud.google.com/compute/docs/access/iam)

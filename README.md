@@ -36,10 +36,17 @@ Set up Databricks Unity Gateway to connect Codex with the `system.ai.github` MCP
 
 ### Cloud Infrastructure
 
-Compare cloud computing concepts, on-premises environments, and services across AWS, Google Cloud, Azure, and VMware:
+Compare cloud computing concepts and on-premises environments, then see how Snowflake and Databricks relate to AWS, Google Cloud, Azure, and OCI:
 
 - [Cloud Concepts Comparison Guide — English](Cloud_Concepts_Comparison_Guide.md)
 - [Cloud Concepts Comparison Guide — 한국어](Cloud_Concepts_Comparison_Guide.ko.md)
+
+### Snowflake MCP
+
+Set up the Snowflake-managed MCP server with OAuth, least-privilege access, and a compatible client:
+
+- [Snowflake MCP Setup Guide — English](snowflake-mcp/Snowflake_MCP_Setup_Guide.md)
+- [Snowflake MCP 설정 가이드 — 한국어](snowflake-mcp/Snowflake_MCP_Setup_Guide.ko.md)
 
 ### DevOps & Troubleshooting
 
