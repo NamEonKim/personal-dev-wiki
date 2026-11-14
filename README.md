@@ -41,12 +41,12 @@ Compare cloud computing concepts and on-premises environments, then see how Snow
 - [Cloud Concepts Comparison Guide — English](Cloud_Concepts_Comparison_Guide.md)
 - [Cloud Concepts Comparison Guide — 한국어](Cloud_Concepts_Comparison_Guide.ko.md)
 
-### Snowflake MCP
+### Snowflake, GitHub & Codex
 
-Set up the Snowflake-managed MCP server with OAuth, least-privilege access, and a compatible client:
+Connect Snowflake Git, Snowflake CLI, OpenAI Codex, and GitHub Actions using least-privilege access:
 
-- [Snowflake MCP Setup Guide — English](snowflake-mcp/Snowflake_MCP_Setup_Guide.md)
-- [Snowflake MCP 설정 가이드 — 한국어](snowflake-mcp/Snowflake_MCP_Setup_Guide.ko.md)
+- [Snowflake, GitHub, Codex & GitHub Actions — English](snowflake-mcp/Snowflake_GitHub_Codex_GitHub_Actions_Guide.md)
+- [Snowflake, GitHub, Codex 및 GitHub Actions — 한국어](snowflake-mcp/Snowflake_GitHub_Codex_GitHub_Actions_Guide.ko.md)
 
 ### API Testing with Postman
 
