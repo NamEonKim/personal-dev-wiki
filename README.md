@@ -48,6 +48,20 @@ Set up the Snowflake-managed MCP server with OAuth, least-privilege access, and 
 - [Snowflake MCP Setup Guide — English](snowflake-mcp/Snowflake_MCP_Setup_Guide.md)
 - [Snowflake MCP 설정 가이드 — 한국어](snowflake-mcp/Snowflake_MCP_Setup_Guide.ko.md)
 
+### API Testing with Postman
+
+Organize REST API tests, environments, authentication, and API-specific OAuth token workflows:
+
+- [Postman API Testing and OAuth Token Automation](postman/Postman_API_Testing_and_OAuth_Token_Automation.md)
+- [Postman API 테스트 및 OAuth 토큰 자동화 — 한국어](postman/Postman_API_Testing_and_OAuth_Token_Automation.ko.md)
+
+### Enterprise Network Operations
+
+Manage FQDN configuration, credential rotation, and least-privilege firewall requests:
+
+- [Enterprise Network Operations: FQDN Governance, Credential Rotation, and Firewall Readiness](networking/Enterprise_Network_Operations_FQDN_Credentials_Firewall.md)
+- [엔터프라이즈 네트워크 운영: FQDN 관리, 인증정보 교체 및 방화벽 준비 — 한국어](networking/Enterprise_Network_Operations_FQDN_Credentials_Firewall.ko.md)
+
 ### DevOps & Troubleshooting
 
 Find platform-specific log locations and read-only inspection commands for Linux, Unix, Windows, SSH, Docker, and Kubernetes:
